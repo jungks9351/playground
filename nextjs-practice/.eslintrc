@@ -14,7 +14,7 @@
     "ecmaVersion": 2020,
     "sourceType": "module"
   },
-  "plugins": ["import", "react-hooks"],
+  "plugins": ["import", "next"],
   "rules": {
     "jsx-a11y/label-has-associated-control": "off",
     "jsx-a11y/anchor-is-valid": "off",
