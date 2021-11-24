@@ -1,0 +1,10 @@
+ul {
+  list-style: none;
+}
+li {
+  font-size: 14px;
+  background-color: #acefff;
+  width: 100px;
+  height: 100px;
+  text-align: center;
+}
