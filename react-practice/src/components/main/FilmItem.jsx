@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const FilmItem = () => {
+const FilmItem = ({ filmImg, filmTitle, filmDate }) => {
   return (
     <FilmItemWrapper>
-      <img src="" alt="" className="film_img" />
+      <img src={filmImg} alt="" className="film_img" />
       <div className="film_info">
-        <p className="film_title">title </p>
-        <p className="film_date">date</p>
+        <p className="film_title">{filmTitle} </p>
+        <p className="film_date">{filmDate}</p>
       </div>
     </FilmItemWrapper>
   );
