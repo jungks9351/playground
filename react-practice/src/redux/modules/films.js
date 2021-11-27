@@ -3,7 +3,7 @@ import { createAction, handleActions } from 'redux-actions';
 import { getFilmInfo } from 'api/film';
 
 const initialState = {
-  films: null,
+  filmItems: null,
   loading: true,
   err: null,
 };
@@ -45,7 +45,7 @@ const films = handleActions(
       return { ...state, loading: true };
     },
     [getFilmsActionSuccess]: (state, action) => {
-      return { ...state, loading: false, films: action.payload };
+      return { ...state, loading: false, filmItems: action.payload };
     },
     [getFilmsActionFailure]: (state, action) => {
       return { ...state, loading: false, err: action.payload };
