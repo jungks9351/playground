@@ -24,7 +24,7 @@ export const getFilmsFailure = createAction(getFilmsActionFailure);
 
 function* getFilmsSaga(action) {
   try {
-    const filmData = yield call(getFilmInfo);
+    const filmData = yield call(() => getFilmInfo(action.payload));
     yield put({ type: `${action.type}_SUCCESS`, payload: filmData });
   } catch (e) {
     yield put({ type: `${action.type}_FAILURE`, payload: action.payload });

@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-export const getFilmInfo = async () => {
+export const getFilmInfo = async (filmCount) => {
   try {
     const res = await axios.get(
-      'https://ghibliapi.herokuapp.com/films?limit=9',
+      `https://ghibliapi.herokuapp.com/films?limit=${filmCount}`,
     );
     const filmData = res.data;
     return filmData;

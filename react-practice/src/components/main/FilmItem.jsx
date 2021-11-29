@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const FilmItem = ({ filmImg, filmTitle, filmDate }) => {
+const FilmItem = ({ filmImg, filmTitle, filmDate, lastFilm }) => {
   return (
-    <FilmItemWrapper>
+    <FilmItemWrapper ref={lastFilm}>
       <img src={filmImg} alt="" className="film_img" />
       <div className="film_info">
         <p className="film_title">{filmTitle} </p>
