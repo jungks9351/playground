@@ -1,10 +1,10 @@
-import { put, call, takeLatest } from 'redux-saga/effects';
+import { put, call, takeLatest, delay } from 'redux-saga/effects';
 import { createAction, handleActions } from 'redux-actions';
 import { getFilmInfo } from 'api/film';
 
 const initialState = {
-  filmItems: null,
-  loading: true,
+  filmItems: [],
+  loading: false,
   err: null,
 };
 
@@ -25,6 +25,7 @@ export const getFilmsFailure = createAction(getFilmsActionFailure);
 function* getFilmsSaga(action) {
   try {
     const filmData = yield call(() => getFilmInfo(action.payload));
+    yield delay(2000);
     yield put({ type: `${action.type}_SUCCESS`, payload: filmData });
   } catch (e) {
     yield put({ type: `${action.type}_FAILURE`, payload: action.payload });

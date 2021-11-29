@@ -1,25 +1,31 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const FilmItem = ({ filmImg, filmTitle, filmDate, lastFilm }) => {
+const FilmItem = ({ filmData, lastFilm }) => {
   return (
     <FilmItemWrapper ref={lastFilm}>
-      <img src={filmImg} alt="" className="film_img" />
+      <div className="film_img">
+        <img src={filmData.image} alt="" />
+      </div>
       <div className="film_info">
-        <p className="film_title">{filmTitle} </p>
-        <p className="film_date">{filmDate}</p>
+        <p className="film_title">{filmData.title} </p>
+        <p className="film_date">{filmData.release_date}</p>
       </div>
     </FilmItemWrapper>
   );
 };
 
 const FilmItemWrapper = styled.li`
-  width: 300px;
+  width: 400px;
   height: 400px;
   box-shadow: 1px 5px 15px 1px rgba(0, 0, 0, 0.2);
   .film_img {
-    width: 300px;
+    width: 400px;
     height: 300px;
+    > img {
+      width: 100%;
+      height: 100%;
+    }
   }
   .film_info {
     padding: 2rem;

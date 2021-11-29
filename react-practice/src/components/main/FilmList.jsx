@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getFilms } from 'redux/modules/films';
 import styled from 'styled-components';
 import FilmItem from './FilmItem';
+import FilmSkeleton from 'components/main/FilmSkeleton';
 
 const FilmList = () => {
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ const FilmList = () => {
     const options = {
       root: null,
       rootmargin: '0px',
-      threshold: 0.5,
+      threshold: 0.9,
     };
     const handleIntersection = (entries, observer) => {
       if (entries[0].isIntersecting) {
@@ -41,29 +42,26 @@ const FilmList = () => {
 
     return () => observer.disconnect();
   }, [dispatch, loading, filmCount]);
+
   return (
     <FilmListWrapper>
-      {filmItems &&
+      {!loading ? (
         filmItems.map((filmData, index) =>
           index + 1 === filmItems.length ? (
             <FilmItem
               key={filmData.id}
-              filmImg={filmData.image}
-              filmTitle={filmData.title}
-              filmDate={filmData.release_date}
+              filmData={filmData}
               lastFilm={
                 !loading && filmItems.length < 21 && lastFilm ? lastFilm : null
               }
             />
           ) : (
-            <FilmItem
-              key={filmData.id}
-              filmImg={filmData.image}
-              filmTitle={filmData.title}
-              filmDate={filmData.release_date}
-            />
+            <FilmItem key={filmData.id} filmData={filmData} />
           ),
-        )}
+        )
+      ) : (
+        <FilmSkeleton />
+      )}
     </FilmListWrapper>
   );
 };
