@@ -1,6 +1,4 @@
-import { put, call, takeLatest, delay } from 'redux-saga/effects';
-import { createAction, handleActions } from 'redux-actions';
-import { getFilmInfo } from 'api/film';
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   filmItems: [],
@@ -8,51 +6,29 @@ const initialState = {
   err: null,
 };
 
-// action 타입 정의
+// toolkit slice
 
-const getFilmsAction = 'GET_FILMS';
-const getFilmsActionSuccess = 'GET_FILMS_SUCCESS';
-const getFilmsActionFailure = 'GET_FILMS_FAILURE';
-
-// action 생성자 함수
-
-export const getFilms = createAction(getFilmsAction);
-export const getFilmsSuccess = createAction(getFilmsActionSuccess);
-export const getFilmsFailure = createAction(getFilmsActionFailure);
-
-//saga
-
-function* getFilmsSaga(action) {
-  try {
-    const filmData = yield call(() => getFilmInfo(action.payload));
-    yield delay(2000);
-    yield put({ type: `${action.type}_SUCCESS`, payload: filmData });
-  } catch (e) {
-    yield put({ type: `${action.type}_FAILURE`, payload: action.payload });
-  }
-}
-
-// saga watcher
-
-export function* filmsSaga() {
-  yield takeLatest(getFilmsAction, getFilmsSaga);
-}
-
-// reducer
-
-const films = handleActions(
-  {
-    [getFilmsAction]: (state, action) => {
-      return { ...state, loading: true };
+const filmsSlice = createSlice({
+  name: 'films',
+  initialState,
+  reducers: {
+    getFilms(state) {
+      state.loading = true;
+      state.err = null;
     },
-    [getFilmsActionSuccess]: (state, action) => {
-      return { ...state, loading: false, filmItems: action.payload };
+    getFilmsSuccess(state, action) {
+      state.loading = false;
+      state.err = null;
+      state.filmItems = action.payload;
     },
-    [getFilmsActionFailure]: (state, action) => {
-      return { ...state, loading: false, err: action.payload };
+    getFilmsFailure(state, action) {
+      state.loading = false;
+      state.err = action.payload;
     },
   },
-  initialState,
-);
+});
 
-export default films;
+export const { getFilms, getFilmsSuccess, getFilmsFailure } =
+  filmsSlice.actions;
+
+export default filmsSlice.reducer;
