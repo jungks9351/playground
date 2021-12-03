@@ -4,8 +4,11 @@ import styled from 'styled-components';
 const CommonHeader = () => {
   return (
     <HeaderWrapper>
-      <h1>スタジオジブリ</h1>
-      <h1>STUDIO GHIBLI</h1>
+      <h1>
+        スタジオジブリ
+        <br />
+        STUDIO GHIBLI
+      </h1>
     </HeaderWrapper>
   );
 };
@@ -21,6 +24,7 @@ const HeaderWrapper = styled.header`
   h1 {
     color: #000;
     font-size: 3rem;
+    text-align: center;
   }
 `;
 
