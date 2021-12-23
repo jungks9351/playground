@@ -16,21 +16,7 @@ const $deleteUserBtn = document.getElementById('deleteUserBtn');
 // GET 메소드 요청
 
 const getUsers = () => {
-  const xhr = new XMLHttpRequest();
-
-  xhr.open('GET', 'http://localhost:3000/users');
-
-  xhr.send();
-
-  xhr.onload = () => {
-    try {
-      const res = xhr.response;
-      const users = JSON.parse(res);
-      render(users);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  useXMLHttpRequest('GET', '');
 };
 
 // 그리는 함수
@@ -61,11 +47,6 @@ window.onload = () => {
 // POST 메소드 요청
 
 $addUserBtn.onclick = () => {
-  const xhr = new XMLHttpRequest();
-  xhr.open('POST', 'http://localhost:3000/users');
-
-  xhr.setRequestHeader('Content-Type', 'application/json');
-
   const userName = $addUserName.value;
   const userAge = $addUserAge.value;
 
@@ -73,7 +54,8 @@ $addUserBtn.onclick = () => {
     name: userName,
     age: userAge,
   };
-  xhr.send(JSON.stringify(payload));
+  useXMLHttpRequest('POST', '', payload);
+
   // user을 추가하면 다시 그려주어야 한다. 추가 된 만큼
   getUsers();
 };
@@ -97,12 +79,6 @@ $changeUserBtn.onclick = () => {
     .getElementById(`age${value}`)
     .textContent.split(': ')[1];
 
-  const xhr = new XMLHttpRequest();
-
-  xhr.open('PATCH', `http://localhost:3000/users/${value}`);
-
-  xhr.setRequestHeader('Content-Type', 'application/json');
-
   const changeName = $changeUserName.value;
   const changeAge = $changeUserAge.value;
 
@@ -111,7 +87,7 @@ $changeUserBtn.onclick = () => {
     age: changeAge ? changeAge : beforeAge,
   };
 
-  xhr.send(JSON.stringify(payload));
+  useXMLHttpRequest('PATCH', `/${value}`, payload);
 
   alert('수정 완료');
   getUsers();
@@ -125,11 +101,7 @@ $deleteUserBtn.onclick = () => {
 
   if (!value) return;
 
-  const xhr = new XMLHttpRequest();
-
-  xhr.open('DELETE', `http://localhost:3000/users/${value}`);
-
-  xhr.send();
+  useXMLHttpRequest('DELETE', `/${value}`);
 
   getUsers();
 };
@@ -154,3 +126,28 @@ const validateUser = () => {
 };
 
 // fetch 요청 방식
+
+const useXMLHttpRequest = (method, url, payload) => {
+  const xhr = new XMLHttpRequest();
+
+  xhr.open(method, `http://localhost:3000/users${url}`);
+
+  if (payload) {
+    console.log(payload);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify(payload));
+  } else if (method === 'GET') {
+    xhr.send();
+    xhr.onload = () => {
+      try {
+        const res = xhr.response;
+        const users = JSON.parse(res);
+        render(users);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+  } else {
+    xhr.send();
+  }
+};
