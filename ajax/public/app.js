@@ -125,8 +125,6 @@ const validateUser = () => {
   }
 };
 
-// fetch 요청 방식
-
 const useXMLHttpRequest = (method, url, payload) => {
   const xhr = new XMLHttpRequest();
 
