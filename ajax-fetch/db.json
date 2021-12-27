@@ -1,0 +1,19 @@
+{
+  "todos": [
+    {
+      "checked": true,
+      "todoText": "1",
+      "id": 1
+    },
+    {
+      "checked": false,
+      "todoText": "2",
+      "id": 2
+    },
+    {
+      "todoText": "3",
+      "checked": true,
+      "id": 3
+    }
+  ]
+}
