@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -45,7 +45,7 @@ const RegisterPage = () => {
 
     await axios.post('http://localhost:4000/users', payload);
 
-    // navigate('/');
+    navigate('/login');
   };
 
   return (
