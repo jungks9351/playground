@@ -1,12 +1,10 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const RegisterPage = () => {
-  const [userInfo, setUserInfo] = useState({
-    userId: '',
-    userPw: '',
-  });
+  const navigate = useNavigate();
 
   const checkId = (userId) => {
     const regexr =
@@ -17,6 +15,11 @@ const RegisterPage = () => {
     const regexr = /[`~!@#$%^&*|\\\'\";:\/?]/gi;
 
     return regexr.test(userPw);
+  };
+
+  const validateID = async (userId) => {
+    const res = await axios.get(`http://localhost:4000/users?userId=${userId}`);
+    return res.data.length;
   };
 
   const registUser = async (e) => {
@@ -31,9 +34,18 @@ const RegisterPage = () => {
       alert('비밀번호는 특수문자를 포함하여 작성해주세요');
       return;
     }
-    setUserInfo({ ...userInfo, userId, userPw });
+    const payload = {
+      userId,
+      userPw,
+    };
+    if (validateID(userId)) {
+      alert('존재하는 아이디입니다.');
+      return;
+    }
 
-    await axios.post('http://localhost:4000/users', userInfo);
+    await axios.post('http://localhost:4000/users', payload);
+
+    // navigate('/');
   };
 
   return (
