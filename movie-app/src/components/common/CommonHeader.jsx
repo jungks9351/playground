@@ -1,13 +1,28 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 const CommonHeader = () => {
+  const navigate = useNavigate();
+
   return (
     <CommonHeaderWrapper>
-      <h1>Movie List</h1>
-      <nav>
-        <button>로그인</button>
-        <button>회원가입</button>
+      <h1>Popular Movie List</h1>
+      <nav className="right-nav">
+        <button
+          onClick={() => {
+            navigate('/login');
+          }}
+        >
+          로그인
+        </button>
+        <button
+          onClick={() => {
+            navigate('/regist');
+          }}
+        >
+          회원가입
+        </button>
       </nav>
     </CommonHeaderWrapper>
   );
@@ -28,6 +43,7 @@ const CommonHeaderWrapper = styled.header`
     border-radius: 10px;
     font-size: 14px;
     font-weight: bolder;
+    cursor: pointer;
   }
 `;
 
