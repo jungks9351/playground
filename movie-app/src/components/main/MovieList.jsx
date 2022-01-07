@@ -6,9 +6,12 @@ import MovieItem from './MovieItem';
 const MovieList = () => {
   const [movieDatas, setMovieDatas] = useState();
 
-  useEffect(async () => {
+  const getMovieData = async () => {
     const popularMovieDatas = await getPopularMovies();
     setMovieDatas(popularMovieDatas);
+  };
+  useEffect(() => {
+    getMovieData();
   }, []);
 
   return (
