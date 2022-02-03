@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './frontend/src/js/index.js',
 
   resolve: {
     extensions: ['.js', '.jsx'],
@@ -38,7 +38,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: `./public/index.html`,
+      template: `./frontend/public/index.html`,
     }),
   ],
 
