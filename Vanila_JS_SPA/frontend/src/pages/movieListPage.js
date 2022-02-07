@@ -1,5 +1,6 @@
 import { getMovieInfo } from '../api/api.js';
 import movieItem from '../components/movieItem.js';
+import { routeChange } from '../utils/useRouter.js';
 
 const movieListPage = async (root) => {
   const movieDatas = await getMovieInfo();
@@ -16,6 +17,17 @@ const movieListPage = async (root) => {
     </div>`;
   };
   render(root);
+
+  const $movieList = document.querySelector('.movie-list');
+
+  $movieList.addEventListener('click', (e) => {
+    const $li = e.target.closest('li');
+    const movieId = $li.id;
+
+    if (movieId) {
+      routeChange(`/movies/${movieId}`);
+    }
+  });
 };
 
 export default movieListPage;
