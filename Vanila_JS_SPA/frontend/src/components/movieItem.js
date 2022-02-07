@@ -1,4 +1,6 @@
 const movieItem = (movieData) => {
+  if (!movieData) return;
+
   return `<li class="movie-item" id=${movieData.id}>
   <div class="movie-img">
   <img src="https://image.tmdb.org/t/p/w500/${movieData.image}"/>
