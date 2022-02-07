@@ -96,6 +96,7 @@ header {
   width: 400px;
   height: 400px;
   box-shadow: 1px 5px 15px 1px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
 }
 .movie-img > img {
   width: 400px;
