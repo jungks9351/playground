@@ -1,11 +1,11 @@
 const movieItem = (movieData) => {
   return `<li class="movie-item" id=${movieData.id}>
-  <div className="movie-img">
+  <div class="movie-img">
   <img src="https://image.tmdb.org/t/p/w500/${movieData.image}"/>
 </div>
-<div className="">
-  <p className="moive-title">${movieData.title} </p>
-  <p className="movie-date">${movieData.release_date}</p>
+<div class="movie-info">
+  <p class="moive-title">${movieData.title} </p>
+  <p class="movie-date">${movieData.release_date}</p>
 </div></li>`;
 };
 

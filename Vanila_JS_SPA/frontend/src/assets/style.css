@@ -1,0 +1,115 @@
+/* reset */
+/* 숨긴 콘텐츠 */
+.a11y-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  margin: -1px;
+  clip-path: polygon(0 0, 0 0, 0 0);
+  clip: rect(0 0 0 0);
+  clip: rect(0, 0, 0, 0);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 20px;
+}
+
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+dl,
+dt,
+dd,
+fieldset,
+button,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+ul,
+ol,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+  background-color: inherit;
+}
+
+input {
+  border: none;
+  outline: none;
+}
+
+/* 헤더 */
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* movieListPage */
+
+.movie-list-page > h2 {
+  margin: 0 auto;
+  text-align: center;
+  margin: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.movie-list {
+  margin: 3rem auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+/* movieItem */
+.movie-item {
+  width: 400px;
+  height: 400px;
+  box-shadow: 1px 5px 15px 1px rgba(0, 0, 0, 0.2);
+}
+.movie-img > img {
+  width: 400px;
+  height: 300px;
+}
+
+.movie-info {
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+.movie-title {
+  font-size: 1.4rem;
+  font-weight: bolder;
+}
