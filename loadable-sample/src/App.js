@@ -1,16 +1,33 @@
+import { useState } from 'react';
 import './App.css';
 
 function App() {
   const handleClick = () => {
+    // 함수 코드 스플리팅
     // import 를 함수로 사용하면, Promise 를 반환합니다.
     import('./notify').then(({ default: notify }) => {
       notify();
     });
   };
 
+  // 컴포넌트 스플리팅
+  const [SplitMe, setSplitMe] = useState(null);
+
+  const handleClick2 = async () => {
+    // import('./SplitMe').then(({ default: SplitMe }) => {
+    //   setSplitMe(SplitMe);
+    // });
+    const loadedModule = await import('./SplitMe');
+    setSplitMe(loadedModule.default);
+  };
+
   return (
     <div className='App'>
-      <button onClick={handleClick}>Click Me</button>
+      <h2>함수를 코드 스플리팅 해보기</h2>
+      <button onClick={handleClick}>함수를 코드 스플리팅</button>
+      <h2>컴포넌트를 코드 스플리팅 해보기</h2>
+      <button onClick={handleClick2}>컴포넌트를 코드 스플리팅</button>
+      {SplitMe && SplitMe}
     </div>
   );
 }
