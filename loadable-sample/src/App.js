@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './App.css';
+import withSplitting from './withSplitting';
 
 function App() {
   const handleClick = () => {
@@ -21,6 +22,13 @@ function App() {
     setSplitMe(loadedModule.default);
   };
 
+  // 고차컴포넌트 사용
+  const [visible, setVisible] = useState(false);
+  const SplitMe2 = withSplitting(() => import('./SplitMe'));
+  const handleClick3 = () => {
+    setVisible(true);
+  };
+
   return (
     <div className='App'>
       <h2>함수를 코드 스플리팅 해보기</h2>
@@ -28,6 +36,9 @@ function App() {
       <h2>컴포넌트를 코드 스플리팅 해보기</h2>
       <button onClick={handleClick2}>컴포넌트를 코드 스플리팅</button>
       {SplitMe && SplitMe}
+      <h2>고차컴포넌트(HoC)를 사용하여 더 쉽게 코드 스플리팅 하기</h2>
+      <button onClick={handleClick3}>HoC 사용</button>
+      {visible && <SplitMe2 />}
     </div>
   );
 }
