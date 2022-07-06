@@ -48,6 +48,12 @@ npm i -D @babel/core @babel/preset-env @babel/preset-react
 - Babel은 현재 및 이전 브라우저 또는 환경에서 ECMAScript 2015+ 코드를 이전 버전의 JavaScript로 변환하는 데 주로 사용되는 도구 체인입니다.
   - ES6+ 버전의 자바스크립트나 타입스크립트, JSX 등 다른 언어로 분류되는 언어들에 대해서도 모든 브라우저에서 동작할 수 있도록 호환성을 지켜줍니다. (크로스 브라우징)
 
+```json
+{
+  "presets": ["@babel/preset-env", "@babel/preset-react"]
+}
+```
+
 ### 3. 웹팩 설정
 
 [webpack-github](https://github.com/webpack/webpack)
