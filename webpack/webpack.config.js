@@ -1,15 +1,25 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ESLintPlugin = require('eslint-webpack-plugin')
 
-const port = process.env.port || 3000;
+const port = process.env.port || 3000
 
 module.exports = {
   mode: 'development',
+
+  devtool: 'source-map',
+
+  resolve: {
+    extensions: ['*', '.js', '.jsx'],
+  },
+
   entry: './src/index.jsx',
+
   output: {
     filename: 'bundel.[hash].js',
     path: path.resolve(__dirname, 'dist'),
   },
+
   module: {
     rules: [
       {
@@ -29,17 +39,20 @@ module.exports = {
       },
     ],
   },
+
   plugins: [
     new HtmlWebpackPlugin({
       template: 'public/index.html',
     }),
+    new ESLintPlugin({
+      extensions: ['js', 'jsx'],
+      emitWarning: false,
+    }),
   ],
+
   devServer: {
     host: 'localhost',
     port: port,
     open: true,
   },
-  resolve: {
-    extensions: ['*', '.js', '.jsx'],
-  },
-};
+}

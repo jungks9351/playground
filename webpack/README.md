@@ -75,7 +75,7 @@ module.exports = {
     // output으로 번들된 파일이름 지정
     filename: 'bundel.[hash].js',
   },
-};
+}
 ```
 
 ### 4. loader
@@ -107,7 +107,7 @@ npm i -D babel-loader html-loader
 - html-loader : 웹팩이 html을 읽을 수 있게 지원합니다.
   - option
     ```js
-    minimize: true; // 코드 최적화 옵션
+    minimize: true // 코드 최적화 옵션
     ```
 
 ### 5. plugins
@@ -132,7 +132,7 @@ npm i -D html-webpack-plugin
 ### 6. 개발 서버 설정
 
 ```js
-const port = process.env.port || 3000;
+const port = process.env.port || 3000
 
 module.exports = {
   //...
@@ -142,7 +142,7 @@ module.exports = {
     port: port,
     open: true,
   },
-};
+}
 ```
 
 ```js
@@ -169,7 +169,7 @@ module.exports = {
   resolve: {
     extensions: ['*', '.js', '.jsx'],
   },
-};
+}
 ```
 
 ## Webpack with React
@@ -178,4 +178,14 @@ module.exports = {
 
 ```bash
 npm i react react-dom
+```
+
+## Webpack with formatting
+
+- Eslint, Prettier
+
+- 모듈 설치
+
+```bash
+npm i -D eslint prettier
 ```
